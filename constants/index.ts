@@ -1,3 +1,5 @@
+import { PropertyProps } from "@/interfaces";
+
 export const PROPERTYLISTINGSAMPLE: PropertyProps[] = [
   {
     id: 1,
