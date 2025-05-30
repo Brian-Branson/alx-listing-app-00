@@ -45,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ onShowLogin, onShowSignup }) => {
       <nav className="flex justify-center gap-6">
         <a href="#home" className="text-sm hover:underline">Home</a>
         <a href="#properties" className="text-sm hover:underline">Properties</a>
-        <a href="#about" className="text-sm hover:underline">Contact</a> </nav>
+        <a href="#about" className="text-sm hover:underline">About </a> </nav>
     </header>
   );
 };
