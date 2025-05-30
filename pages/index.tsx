@@ -7,8 +7,8 @@ import LoginModal from '@/components/common/LoginModal';
 import SignupModal from '@/components/common/SignupModal';
 import ImageCarousel from '@/components/common/ImageCarousel';
 import Pill from '@/components/common/Pill';
-import Header from '@/components/common/layout/Header';
-import Footer from '@/components/common/layout/Footer';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const filterLabels = [
   { label: 'Free Wi-Fi', value: 'wifi' },
