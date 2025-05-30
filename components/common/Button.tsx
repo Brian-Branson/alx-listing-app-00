@@ -1,22 +1,23 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { ButtonProps } from '@/interfaces';
 
+interface ButtonProps {
+  adults: number;
+  childrenCount: number;
+}
 
-const Button: React.FC<ButtonProps> = ({ label, onClick }) => (
-  <button onClick={onClick} className="whitespace-nowrap bg-sky-500 hover:bg-sky-700 px-5 py-2 bg-blue-500 text-white rounded">
-    {label}
-  </button>
-);
-
-export default function HomePage() {
-  const router = useRouter();
+export default function Button({ adults, childrenCount }: ButtonProps) {
+  const handleClick = () => {
+    // Example logic: log or submit the values
+    console.log(`Booking for ${adults} adults and ${childrenCount} children`);
+    // You can now use these values to send to an API or update state
+  };
 
   return (
-    <>
-      <div className="flex justify-center">
-        <Button label="Book Now" onClick={() => router.push('/rooms')} />
-      </div>
-    </>
+    <button
+      onClick={handleClick}
+      className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition"
+    >
+      Check Availability
+    </button>
   );
 }

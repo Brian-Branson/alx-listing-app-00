@@ -1,38 +1,66 @@
-import React from "react";
+// components/FilterablePropertyList.tsx
+import React, { useState } from "react";
+import { PROPERTYLISTINGSAMPLE } from "@/constants";
+import { PropertyProps } from "@/interfaces";
 
-type Filter = {
-  label: string;
-  value: string | number;
-};
+const uniqueCategories = [
+  "All",
+  ...new Set(PROPERTYLISTINGSAMPLE.flatMap(p => p.category)),
+];
 
-type PillProps = {
-  filters: Filter[];
-  onClick?: (filter: Filter) => void;
-  selectedValue?: string | number;
-};
+const FilterablePropertyList = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-const Pill: React.FC<PillProps> = ({ filters, onClick, selectedValue }) => {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {filters.map((filter) => {
-        const isSelected = selectedValue === filter.value;
-        return (
-          <button
-            key={filter.value}
-            onClick={() => onClick?.(filter)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-              isSelected
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-            }`}
-            type="button"
-          >
-            {filter.label}
-          </button>
+  const filteredProperties: PropertyProps[] =
+    selectedCategory === "All"
+      ? PROPERTYLISTINGSAMPLE
+      : PROPERTYLISTINGSAMPLE.filter(property =>
+          property.category.includes(selectedCategory)
         );
-      })}
+
+  return (
+    <div className="px-4">
+      {/* Filter Pills */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {uniqueCategories.map((category) => (
+          <button
+            key={category}
+            className={`px-4 py-2 rounded-full text-sm border ${
+              selectedCategory === category
+                ? "bg-black text-white"
+                : "bg-gray-100 text-black"
+            }`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      {/* Filtered Listings */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredProperties.map((property) => (
+          <div
+            key={property.id}
+            className="border rounded-xl overflow-hidden shadow-sm"
+          >
+            <img
+              src={property.image}
+              alt={property.name}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <h3 className="font-semibold text-lg">{property.name}</h3>
+              <p className="text-sm text-gray-600">
+                {property.address.city}, {property.address.country}
+              </p>
+              <p className="mt-2 text-sm font-medium">${property.price}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Pill;
+export default FilterablePropertyList;

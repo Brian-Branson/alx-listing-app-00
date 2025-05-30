@@ -16,8 +16,6 @@ export default function ImageCarousel() {
   const [isHovered, setIsHovered] = useState(false);
   const total = images.length;
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
   const prevSlide = () => {
     setCurrent((prev) => (prev === 0 ? total - 1 : prev - 1));
   };
@@ -39,21 +37,18 @@ export default function ImageCarousel() {
   return (
     <div
       className="relative w-full overflow-hidden rounded-lg shadow-lg"
-      onMouseEnter={() => setIsHovered(false)}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-    
       <div
-        ref={containerRef}
         className="flex transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {images.map((src, index) => (
-          <div key={index} className="min-w-full h-[800px] relative">
-
+          <div key={index} className="min-w-full h-[500px] md:h-[700px] relative">
             <Image
               src={src}
-              alt={`Slide ${index}`}
+              alt={`Slide ${index + 1}`}
               fill
               className="object-cover"
               priority={index === 0}
@@ -64,15 +59,17 @@ export default function ImageCarousel() {
 
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-opacity-70 hover:bg-opacity-90 p-2 rounded-full"
+        aria-label="Previous slide"
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-80 text-white p-2 rounded-full"
       >
-        &#60;
+        &#10094;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-opacity-0 hover:bg-opacity-90 p-2 rounded-full"
+        aria-label="Next slide"
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-80 text-white p-2 rounded-full"
       >
-        &#62;
+        &#10095;
       </button>
     </div>
   );

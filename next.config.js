@@ -1,1 +1,9 @@
-module.exports = { allowedDevOrigins: ['http://192.168.0.26'] };
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ['example.com'],
+  },
+};
+
+module.exports = nextConfig;
