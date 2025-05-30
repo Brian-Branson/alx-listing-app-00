@@ -42,14 +42,10 @@ const Header: React.FC<HeaderProps> = ({ onShowLogin, onShowSignup }) => {
           </button>
         </div>
       </div>
-
-      <nav className="flex gap-4 text-sm">
-        {["Rooms", "Mansion", "Countryside", "Apartments", "Hotels"].map((type) => (
-          <button key={type} className="hover:underline">
-            {type}
-          </button>
-        ))}
-      </nav>
+      <nav className="flex justify-center gap-6">
+        <a href="#home" className="text-sm hover:underline">Home</a>
+        <a href="#properties" className="text-sm hover:underline">Properties</a>
+        <a href="#about" className="text-sm hover:underline">Contact</a> </nav>
     </header>
   );
 };

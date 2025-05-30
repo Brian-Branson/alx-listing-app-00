@@ -63,11 +63,12 @@ export default function Home() {
     <>
       <main className="relative">
         <HeroSection />
-
+        
+      
         <div className="my-8 px-8">
           <ImageCarousel />
         </div>
-
+        <section id="home" className="py-16 px-8 bg-gray-50"> </section>
         {showSignup && (
           <SignupModal
             onClose={() => setShowSignup(false)}
@@ -159,9 +160,7 @@ export default function Home() {
         </section>
 
 
-        <section id="contact" className="py-16 px-8 bg-gray-50">
-          {/* Contact content can go here */}
-        </section>
+
 
 <section id="properties" className="py-16 px-8 bg-white">
   <h2 className="text-4xl font-bold text-center mb-12">Rooms</h2>
